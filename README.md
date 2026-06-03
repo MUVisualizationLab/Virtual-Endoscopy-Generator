@@ -1,7 +1,7 @@
 # Virtual-Endoscopy-Generator
 The template project sits halfway between a template project and a plugin -- It registers with Blender's plugin system so that it can be triggered through the menus, but it cannot be used as a standalone utility on an empty project file. The Blender scene contains materials, lighting, and camera parameters, and the Python script is intended only to automate the mesh processing that need to be done after sample data is imported. The key purpose of the script is to generate the camera path from the streamline data, and process it into a ready to render project.
 
-The blend file consists of a single file, because all auxillary data is packed, including textures and Python files.
+The blend file consists of a single file, because all auxillary data is packed, including textures and Python files. The primary Python script ("VirtualEndoscopy.py") is also included as a separate file for convenient review.
 
 ### More documentation is coming soon...
 
@@ -24,9 +24,12 @@ Refer to the 'sample' folder for examples of how the input files should be forma
 - Save the modified Blender project to a new file.
 - Start rendering a new animation by pressing Ctrl + F12.
 
-## Extending & Modifying The Project
+## Things to check
+The camera lens settings vary between endoscopes, so adjusting the focal length or sensor size may be useful.
 
-*todo*
+There are several post-processing steps set up in the compositor, so investigate that tab to make sure they are suitable. In particular, a fiber optic grid is overlaid onto the render, in order to recreate an imaging artifact of our specific endoscope model. The 'alpha over' node that does that overlay could be bypassed if you do not want that effect.
+
+The speed of the camera path may be adjusted or trimmed using Blender's animation tools.
 
 ## Credit
 Samples provided by Guilherme Garcia. 
