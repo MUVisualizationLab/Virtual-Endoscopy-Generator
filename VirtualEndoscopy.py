@@ -29,7 +29,8 @@ def read_endomesh(context, filepath, meshOptions):
     #move the imported mesh into the 'data' collection
     bpy.ops.object.select_pattern(pattern="mesh*", extend=False)
     bpy.ops.object.parent_clear(type='CLEAR')
-    bpy.ops.object.move_to_collection(collection_index=1)
+    collectionID = bpy.data.collections['Data'].session_uid
+    bpy.ops.object.move_to_collection(collection_uid=collectionID)
     
     #delete the extra lights and such
     bpy.ops.object.select_pattern(pattern="*Node", extend=False)
@@ -141,7 +142,7 @@ def read_endostream(context, filepath, meshOptions):
         outname += "R"
 
     bpy.data.scenes[0].render.filepath = "//renders\\" + outname + "\\img_"
-    bpy.data.scenes[0].node_tree.nodes["exr"].base_path = "//renders\\" + outname + "\\"
+    bpy.data.node_groups[0].nodes['exr'].directory = "//renders\\" + outname + "\\"
 
     
     return {'FINISHED'}
